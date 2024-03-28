@@ -19,7 +19,7 @@ return {
       filters = {
         custom = { '.DS_Store' },
       },
-      git = { ignore = false },
+      git = { ignore = true },
     }
 
     vim.g.loaded_netrw = 1
