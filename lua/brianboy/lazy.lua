@@ -5,4 +5,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup 'brianboy.plugins'
+require('lazy').setup({ { import = 'brianboy.plugins' }, { import = 'brianboy.plugins.lsp' } }, {
+  install = { colorscheme = { 'catppuccin' } },
+  checker = { enable = true, notify = false },
+  change_detection = { notify = false },
+})
