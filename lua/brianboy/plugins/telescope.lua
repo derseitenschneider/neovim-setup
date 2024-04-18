@@ -7,7 +7,6 @@ return {
     'nvim-tree/nvim-web-devicons',
     'folke/todo-comments.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
-    'nvim-telescope/telescope-github.nvim',
   },
   config = function()
     local telescope = require('telescope')
@@ -48,15 +47,6 @@ return {
     pcall(require('telescope').load_extension('fzf'))
     pcall(require('telescope').load_extension('ui-select'))
     telescope.load_extension('fzf')
-
-    -- Github cli extension
-    telescope.load_extension('gh')
-    local gh = require('telescope').extensions.gh
-
-    keymap.set('n', '<leader>ghi', gh.issues, { desc = '[G]it[h]ub [i]ssues' })
-    keymap.set('n', '<leader>ghp', gh.pull_request, { desc = '[G]it[h]ub [p]ull requests' })
-    keymap.set('n', '<leader>ghg', gh.gist, { desc = '[G]it[h]ub [g]ist' })
-    keymap.set('n', '<leader>ghr', gh.run, { desc = '[G]it[h]ub [r]un' })
 
     -- set keymaps
     local builtin = require('telescope.builtin')

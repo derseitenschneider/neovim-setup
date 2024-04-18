@@ -5,9 +5,18 @@ return {
     'nvim-telescope/telescope.nvim',
     'nvim-tree/nvim-web-devicons',
   },
+  cmd = 'Octo',
+  keys = {
+    {
+      '<leader>o',
+      '<cmd>Octo<cr>',
+      desc = 'Octo',
+    },
+  },
   config = function()
     require('octo').setup({
-      default_to_projects_v2 = false,
+      default_to_projects_v2 = true,
+      enable_builtin = true,
     })
   end,
 }
