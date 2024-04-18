@@ -7,18 +7,19 @@ return {
     'nvim-tree/nvim-web-devicons',
     'folke/todo-comments.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
+    'nvim-telescope/telescope-github.nvim',
   },
   config = function()
     local telescope = require('telescope')
     local actions = require('telescope.actions')
     local transform_mod = require('telescope.actions.mt').transform_mod
-
+    local keymap = vim.keymap -- for conciseness
     local trouble = require('trouble')
     local trouble_telescope = require('trouble.providers.telescope')
 
     -- or create your custom action
     local custom_actions = transform_mod({
-      open_trouble_qflist = function(prompt_bufnr)
+      open_trouble_qflist = function()
         trouble.toggle('quickfix')
       end,
     })
@@ -48,9 +49,17 @@ return {
     pcall(require('telescope').load_extension('ui-select'))
     telescope.load_extension('fzf')
 
+    -- Github cli extension
+    telescope.load_extension('gh')
+    local gh = require('telescope').extensions.gh
+
+    keymap.set('n', '<leader>ghi', gh.issues, { desc = '[G]it[h]ub [i]ssues' })
+    keymap.set('n', '<leader>ghp', gh.pull_request, { desc = '[G]it[h]ub [p]ull requests' })
+    keymap.set('n', '<leader>ghg', gh.gist, { desc = '[G]it[h]ub [g]ist' })
+    keymap.set('n', '<leader>ghr', gh.run, { desc = '[G]it[h]ub [r]un' })
+
     -- set keymaps
     local builtin = require('telescope.builtin')
-    local keymap = vim.keymap -- for conciseness
 
     keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Fuzzy find files in cwd' })
     keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Fuzzy find recent files' })
@@ -66,7 +75,7 @@ return {
     -- Find obsidian diretory
     vim.keymap.set('n', '<leader>fo', function()
       builtin.find_files({ cwd = '~/Notes/' })
-    end, { desc = '[S]earch [N]eovim files' })
+    end, { desc = '[S]earch [O]bsidian files' })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>sn', function()

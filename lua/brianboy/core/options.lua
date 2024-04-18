@@ -1,4 +1,4 @@
-vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd('let g:netrw_liststyle = 3')
 
 local opt = vim.opt
 
@@ -7,7 +7,7 @@ opt.relativenumber = true
 opt.number = true
 
 -- Set cursor to block in every mode
-opt.guicursor = ""
+-- opt.guicursor = ''
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
@@ -19,14 +19,14 @@ opt.smartindent = true
 opt.wrap = false
 
 -- Enable mouse mode
-opt.mouse = "a"
+opt.mouse = 'a'
 
 -- Hide mode
 opt.showmode = false
 
 -- Save undo history
 opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 opt.swapfile = false
 opt.backup = false
 
@@ -40,33 +40,33 @@ opt.cursorline = true
 -- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
-opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+opt.background = 'dark' -- colorschemes that can be light or dark will be made dark
+opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
 
 -- backspace
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
 
 -- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+opt.clipboard:append('unnamedplus') -- use system clipboard as default register
 
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 -- Preview substitutions live, as you type!
-opt.inccommand = "split"
+opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor
-opt.scrolloff = 10
+opt.scrolloff = 9999
 
 -- Unset highlight on search, but clear on pressing <Esc> in normal mode
 opt.hlsearch = false
 opt.incsearch = true
 
 -- Highlight yanking
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
