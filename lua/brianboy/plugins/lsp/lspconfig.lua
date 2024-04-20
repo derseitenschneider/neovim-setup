@@ -66,7 +66,13 @@ return {
         keymap.set('n', '<leader>rs', ':LspRestart<CR>', opts) -- mapping to restart lsp if necessary
       end,
     })
-
+    -- De clutter the editor by only showing diagnostic messages when the cursor is over the error
+    vim.diagnostic.config({
+      -- virtual_text = false, -- Do not show the text in front of the error
+      float = {
+        border = 'rounded',
+      },
+    })
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -78,11 +84,17 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
     end
 
+    local handlers = {
+      ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+      ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
+    }
+
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
+          handlers = handlers,
         })
       end,
       ['svelte'] = function()
@@ -133,8 +145,91 @@ return {
       end,
       ['intelephense'] = function()
         lspconfig['intelephense'].setup({
+          capabilities = capabilities,
           init_options = {
             licenceKey = '005T4H00WXQP92N',
+          },
+          settings = {
+            intelephense = {
+              stubs = {
+                'apache',
+                'bcmath',
+                'bz2',
+                'calendar',
+                'com_dotnet',
+                'Core',
+                'ctype',
+                'curl',
+                'date',
+                'dba',
+                'dom',
+                'enchant',
+                'exif',
+                'FFI',
+                'fileinfo',
+                'filter',
+                'fpm',
+                'ftp',
+                'gd',
+                'gettext',
+                'gmp',
+                'hash',
+                'iconv',
+                'imap',
+                'intl',
+                'json',
+                'ldap',
+                'libxml',
+                'mbstring',
+                'meta',
+                'mysqli',
+                'oci8',
+                'odbc',
+                'openssl',
+                'pcntl',
+                'pcre',
+                'PDO',
+                'pdo_ibm',
+                'pdo_mysql',
+                'pdo_pgsql',
+                'pdo_sqlite',
+                'pgsql',
+                'Phar',
+                'posix',
+                'pspell',
+                'readline',
+                'Reflection',
+                'session',
+                'shmop',
+                'SimpleXML',
+                'snmp',
+                'soap',
+                'sockets',
+                'sodium',
+                'SPL',
+                'sqlite3',
+                'standard',
+                'superglobals',
+                'sysvmsg',
+                'sysvsem',
+                'sysvshm',
+                'tidy',
+                'tokenizer',
+                'xml',
+                'xmlreader',
+                'xmlrpc',
+                'xmlwriter',
+                'xsl',
+                'Zend OPcache',
+                'zip',
+                'zlib',
+                'wordpress',
+                'phpunit',
+              },
+              diagnostics = {
+                enable = true,
+              },
+            },
           },
         })
       end,
