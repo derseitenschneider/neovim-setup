@@ -36,6 +36,7 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
+        ['<C-o>'] = cmp.mapping.complete(), -- previous suggestion
         ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
         ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -51,10 +52,22 @@ return {
         { name = 'buffer' }, -- text within current buffer
         { name = 'path' }, -- file system paths
       }),
-
+      --[[ window = {
+        documentation = {
+          border = { '‚ï≠', '‚îÄ', '‚ïÆ', '‚îÇ', '‚ïØ', '‚îÄ', '‚ï∞', '‚îÇ' },
+        },
+      }, ]]
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
         format = lspkind.cmp_format({
+          mode = 'symbol_text',
+          menu = {
+            buffer = '[Buf]',
+            nvim_lsp = '[Lsp]',
+            luasnip = '[Snip]',
+            nvim_lua = '[Lua]',
+            latex_symbols = '[Lat]',
+          },
           maxwidth = 50,
           ellipsis_char = '...',
           before = require('tailwind-tools.cmp').lspkind_format,

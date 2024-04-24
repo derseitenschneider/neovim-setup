@@ -24,6 +24,7 @@ return {
       ensure_installed = {
         'json',
         'php',
+        'phpdoc',
         'javascript',
         'typescript',
         'tsx',

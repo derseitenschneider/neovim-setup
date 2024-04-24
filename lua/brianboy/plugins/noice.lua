@@ -22,6 +22,7 @@ return {
           ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
         },
       },
+      vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', { desc = 'Dismiss Noice Message' }),
       -- you can enable a preset for easier configuration
       presets = {
         -- bottom_search = true, -- use a classic bottom cmdline for search

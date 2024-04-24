@@ -44,7 +44,7 @@ opt.background = 'dark' -- colorschemes that can be light or dark will be made d
 opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
 
 -- Color column
-opt.colorcolumn = '80'
+opt.colorcolumn = '100'
 -- backspace
 opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
 
@@ -64,6 +64,9 @@ opt.scrolloff = 9999
 -- Unset highlight on search, but clear on pressing <Esc> in normal mode
 opt.hlsearch = false
 opt.incsearch = true
+
+-- Concealing characters for obsidian.nvim
+opt.conceallevel = 1
 
 -- Highlight yanking
 vim.api.nvim_create_autocmd('TextYankPost', {

@@ -151,6 +151,9 @@ return {
           },
           settings = {
             intelephense = {
+              format = {
+                braces = 'psr12',
+              },
               stubs = {
                 'apache',
                 'bcmath',

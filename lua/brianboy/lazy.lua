@@ -17,7 +17,7 @@ require('lazy').setup({ { import = 'brianboy.plugins' }, { import = 'brianboy.pl
     notify = false,
   },
   install = {
-    colorscheme = { 'catppuccin' },
+    colorscheme = {'catppuccin-mocha'},
   },
   change_detection = {
     notify = false,
