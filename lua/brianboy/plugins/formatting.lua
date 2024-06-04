@@ -6,15 +6,15 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        php = { 'php' },
-        javascript = { 'prettier' },
-        typescript = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        typescriptreact = { 'prettier' },
-        svelte = { 'prettier' },
-        css = { 'prettier' },
-        html = { 'prettier' },
-        json = { 'prettier' },
+        php = { 'phpcbf' },
+        javascript = { 'biomejs' },
+        typescript = { 'biomejs' },
+        javascriptreact = { 'biomejs' },
+        typescriptreact = { 'biomejs' },
+        svelte = { 'biomejs' },
+        css = { 'biomejs' },
+        html = { 'biomejs' },
+        json = { 'biomejsjs' },
         yaml = { 'prettier' },
         markdown = { 'prettier' },
         graphql = { 'prettier' },
@@ -22,22 +22,11 @@ return {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
       },
-      --[[ formatters = {
-        php = {
-          command = 'php-cs-fixer',
-          args = {
-            'fix',
-            '$FILENAME',
-            '--config=/your/path/to/config/file/[filename].php',
-            '--allow-risky=yes', -- if you have risky stuff in config, if not you dont need it.
-          },
-          stdin = false,
-        },
-      }, ]]
+
       format_on_save = {
         lsp_fallback = true,
         async = false,
-        timeout_ms = 1000,
+        timeout_ms = 3000,
       },
     })
 

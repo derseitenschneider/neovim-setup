@@ -143,17 +143,25 @@ return {
           },
         })
       end,
+      ['denols'] = function()
+        lspconfig.denols.setup({
+          root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
+        })
+      end,
       ['intelephense'] = function()
         lspconfig['intelephense'].setup({
           capabilities = capabilities,
           init_options = {
             licenceKey = '005T4H00WXQP92N',
           },
+          on_init = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+          end,
           settings = {
+            format = {
+              enable = false,
+            },
             intelephense = {
-              format = {
-                braces = 'psr12',
-              },
               stubs = {
                 'apache',
                 'bcmath',

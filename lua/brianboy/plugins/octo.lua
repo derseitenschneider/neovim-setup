@@ -8,7 +8,7 @@ return {
   cmd = 'Octo',
   keys = {
     {
-      '<leader>o',
+      '<leader>gh',
       '<cmd>Octo<cr>',
       desc = 'Octo',
     },

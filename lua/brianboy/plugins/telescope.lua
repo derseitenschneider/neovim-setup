@@ -54,10 +54,10 @@ return {
     keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Fuzzy find files in cwd' })
     keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Fuzzy find recent files' })
     keymap.set('n', '<leader>fs', builtin.live_grep, { desc = 'Find string in cwd' })
-    keymap.set('n', '<leader>fc', builtin.grep_string, { desc = 'Find string under cursor in cwd' })
+    keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Find string under cursor in cwd' })
+    keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<cr>', { desc = 'Find todos' })
 
     -- Find neovim settings
-    keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<cr>', { desc = 'Find todos' })
     vim.keymap.set('n', '<leader>fn', function()
       builtin.find_files({ cwd = vim.fn.stdpath('config') })
     end, { desc = '[S]earch [N]eovim files' })
@@ -66,10 +66,5 @@ return {
     vim.keymap.set('n', '<leader>fo', function()
       builtin.find_files({ cwd = '~/Notes/' })
     end, { desc = '[S]earch [O]bsidian files' })
-
-    -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set('n', '<leader>sn', function()
-      builtin.find_files({ cwd = vim.fn.stdpath('config') })
-    end, { desc = '[S]earch [N]eovim files' })
   end,
 }

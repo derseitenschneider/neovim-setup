@@ -5,25 +5,13 @@ return {
     local lint = require('lint')
 
     lint.linters_by_ft = {
-      javascript = { 'eslint_d' },
-      typescript = { 'eslint_d' },
-      javascriptreact = { 'eslint_d' },
-      typescriptreact = { 'eslint_d' },
-      svelte = { 'eslint_d' },
+      php = { 'phpcs' },
+      javascript = { 'biomejs' },
+      typescript = { 'biomejs' },
+      javascriptreact = { 'biomejs' },
+      typescriptreact = { 'biomejs' },
       python = { 'pylint' },
-    }
-
-    local eslint = lint.linters.eslint_d
-
-    eslint.args = {
-      '--no-warn-ignored',
-      '--format',
-      'json',
-      '--stdin',
-      '--stdin-filename',
-      function()
-        return vim.api.nvim_buf_get_name(0)
-      end,
+      -- php = { 'phpcs' },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })

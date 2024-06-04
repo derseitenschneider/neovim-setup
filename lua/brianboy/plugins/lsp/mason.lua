@@ -43,13 +43,25 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
-        'prettier', -- prettier formatter
+        'biome', -- js/jsx formatter & linter
         'stylua', -- lua formatter
         'isort', -- python formatter
         'black', -- python formatter
         'pylint',
-        'eslint_d',
+        'phpcs',
+        'phpcbf',
       },
+    })
+
+    require('lspconfig').biome.setup({
+
+      config = function()
+        local capabilities = vim.api.nvim_get_api_info().capabilities
+        if capabilities.line_wrapping then
+          vim.opt.wrap = true -- Enable line wrapping
+          vim.opt.nowrap:append('class') -- Don't wrap within class attributes
+        end
+      end,
     })
   end,
 }
