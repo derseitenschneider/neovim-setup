@@ -11,28 +11,37 @@ keymap.set('v', 'J', ':m \'>+1<CR>gv=gv')
 keymap.set('v', 'K', ':m \'<-2<CR>gv=gv')
 
 -- greatest remap ever
-keymap.set('x', '<leader>p', [["_dP]])
+keymap.set('x', '<leader>p', [["_dP]], { desc = 'Keeps the pasted word in register when pasted over a selected part' })
 
 -- File & window management
 keymap.set('n', '<leader>w', ':wa<enter>', { desc = 'Write all buffers', noremap = false })
 keymap.set('n', '<leader>q', ':wqa<enter>', { desc = 'Write and quit all buffers', noremap = false })
 
 -- Center cursor on linewrap, halfpage jump and search next/prev
-keymap.set('n', 'J', 'mzJ`z')
-keymap.set('n', '<C-d>', '<C-d>zz')
-keymap.set('n', '<C-u>', '<C-u>zz')
-keymap.set('n', 'n', 'nzzzv')
-keymap.set('n', 'N', 'Nzzzv')
+keymap.set('n', 'J', 'mzJ`z', { desc = 'Keeps cursor when line wrapping.' })
+keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Keeps cursor centered when jumping down by half page.' })
+keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Keeps cursor centered when jumping up by half page.' })
+keymap.set('n', 'n', 'nzzzv', { desc = 'Centers cursor on jump to next search item.' })
+keymap.set('n', 'N', 'Nzzzv', { desc = 'Centers cursor on jump to previous search item.' })
 
-keymap.set('n', '<leader><leader>', '<cmd>set nohlsearch<CR>', { desc = 'Clear search highlights' })
+-- Search
+keymap.set('n', '<leader>ns', '<cmd>nohls<CR>', { desc = 'Clear search highlights' })
 
--- increment/decrement numbers
+-- Increment/decrement numbers
 keymap.set('n', '<leader>+', '<C-a>', { desc = 'Increment number' })
 keymap.set('n', '<leader>-', '<C-x>', { desc = 'Decrement number' })
 
 keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- window management
+-- Better search/replace
+vim.keymap.set(
+  'n',
+  '<leader>s',
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'Puts the word under the cursor in a search/replace command.' }
+)
+
+-- Window management
 keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' })
 keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split window horizontally' })
 keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make splits equal size' })
