@@ -6,9 +6,6 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
--- Set cursor to block in every mode
--- opt.guicursor = ''
-
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
@@ -16,13 +13,13 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 opt.smartindent = true
 
-opt.wrap = false
-
 -- Enable mouse mode
 opt.mouse = 'a'
 
--- Hide mode
-opt.showmode = false
+-- Show mode
+opt.showmode = true
+
+opt.showtabline = 0
 
 -- Save undo history
 opt.undofile = true
@@ -64,9 +61,6 @@ opt.scrolloff = 9999
 -- Unset highlight on search, but clear on pressing <Esc> in normal mode
 opt.hlsearch = false
 opt.incsearch = true
-
--- Concealing characters for obsidian.nvim
-opt.conceallevel = 1
 
 -- Highlight yanking
 vim.api.nvim_create_autocmd('TextYankPost', {

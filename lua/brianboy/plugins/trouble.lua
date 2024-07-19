@@ -1,6 +1,6 @@
 return {
   'folke/trouble.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/todo-comments.nvim' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/todo-comments.nvim', 'nvim-telescope/telescope.nvim' },
   keys = {
     { '<leader>xx', '<cmd>TroubleToggle<CR>', desc = 'Open/close trouble list' },
     { '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Open trouble workspace diagnostics' },
@@ -12,4 +12,10 @@ return {
   opts = {
     position = 'right',
   },
+  config = function()
+    require('trouble').setup({
+      position = 'right',
+    })
+    require('trouble.sources.telescope') -- Add this line to explicitly load the Telescope integration
+  end,
 }

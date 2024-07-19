@@ -1,4 +1,5 @@
 return {
+   
   'epwalsh/obsidian.nvim',
   version = '*', -- recommended, use latest release instead of latest commit
   lazy = true,
@@ -45,12 +46,12 @@ return {
           end,
           opts = { buffer = true },
         },
-        --[[ ['<leader>on'] = {
+        ['<leader>on'] = {
           action = function()
             return '<cmd>ObsidianNew<CR>'
           end,
           opts = { buffer = true },
-        }, ]]
+        },
       },
 
       note_frontmatter_func = function(note)

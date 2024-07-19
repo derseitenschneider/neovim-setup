@@ -1,5 +1,5 @@
 return {
-  --[[ 'praem90/nvim-phpcsf',
+  'praem90/nvim-phpcsf',
   config = function()
     vim.g.nvim_phpcs_config_phpcs_path = 'phpcs'
     vim.g.nvim_phpcs_config_phpcbf_path = 'phpcbf'
@@ -25,5 +25,5 @@ return {
       desc = 'PHP Fix',
     })
     vim.g.nvim_phpcs_config_phpcs_standard = 'WordPress'
-  end, ]]
+  end,
 }

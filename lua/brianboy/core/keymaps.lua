@@ -27,6 +27,15 @@ keymap.set('n', 'N', 'Nzzzv', { desc = 'Centers cursor on jump to previous searc
 -- Search
 keymap.set('n', '<leader>ns', '<cmd>nohls<CR>', { desc = 'Clear search highlights' })
 
+-- Prevent wrapped lines from being jumped
+vim.keymap.set('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
+vim.keymap.set('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', { expr = true, silent = true })
+vim.keymap.set('v', 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
+vim.keymap.set('v', 'j', 'v:count == 0 ? \'gj\' : \'j\'', { expr = true, silent = true })
+vim.keymap.set('n', '0', 'v:count == 0 ? \'g0\' : \'0\'', { expr = true, silent = true })
+vim.keymap.set('n', '^', 'v:count == 0 ? \'g^\' : \'^\'', { expr = true, silent = true })
+vim.keymap.set('n', '$', 'v:count == 0 ? \'g$\' : \'$\'', { expr = true, silent = true })
+
 -- Increment/decrement numbers
 keymap.set('n', '<leader>+', '<C-a>', { desc = 'Increment number' })
 keymap.set('n', '<leader>-', '<C-x>', { desc = 'Decrement number' })

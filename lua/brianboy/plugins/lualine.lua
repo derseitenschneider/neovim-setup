@@ -12,6 +12,9 @@ return {
         component_separators = { left = '|', right = '|' },
         section_separators = { left = ' ', right = '' },
       },
+      hide = {
+        place = { 'tabline' },
+      },
       sections = {
         lualine_x = {
           {
@@ -25,5 +28,6 @@ return {
         },
       },
     })
+    vim.opt.showtabline = 0
   end,
 }
