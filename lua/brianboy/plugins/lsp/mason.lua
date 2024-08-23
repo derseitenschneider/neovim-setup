@@ -3,17 +3,14 @@ return {
   dependencies = {
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'neovim/nvim-lspconfig',  -- Add this dependency
   },
   config = function()
-    -- import mason
     local mason = require('mason')
-
-    -- import mason-lspconfig
     local mason_lspconfig = require('mason-lspconfig')
-
     local mason_tool_installer = require('mason-tool-installer')
+    local lspconfig = require('lspconfig')
 
-    -- enable mason and configure icons
     mason.setup({
       ui = {
         icons = {
@@ -39,6 +36,7 @@ return {
         'pyright',
         'intelephense',
       },
+      automatic_installation = true,
     })
 
     mason_tool_installer.setup({
@@ -53,14 +51,20 @@ return {
       },
     })
 
-    require('lspconfig').biome.setup({
-
-      config = function()
-        local capabilities = vim.api.nvim_get_api_info().capabilities
-        if capabilities.line_wrapping then
-          vim.opt.wrap = true -- Enable line wrapping
-          vim.opt.nowrap:append('class') -- Don't wrap within class attributes
-        end
+    -- Setup LSP servers after mason-lspconfig
+    mason_lspconfig.setup_handlers({
+      function(server_name)
+        lspconfig[server_name].setup({})
+      end,
+      ['biome'] = function()
+        lspconfig.biome.setup({
+          on_attach = function(client, bufnr)
+            local capabilities = client.server.capabilities
+            if capabilities.documentFormattingProvider then
+              vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+            end
+          end,
+        })
       end,
     })
   end,

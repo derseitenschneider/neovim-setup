@@ -11,13 +11,35 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({ { import = 'brianboy.plugins' }, { import = 'brianboy.plugins.lsp' } }, {
-  checker = {
-    enabled = true,
-    notify = false,
+require('lazy').setup({
+  spec = {
+    { import = 'brianboy.plugins' },
+    { import = 'brianboy.plugins.lsp' },
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'matchit',
+        'matchparen',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+  },
+  defaults = {
+    lazy = false,
+    version = false,
   },
   install = {
     colorscheme = {'catppuccin-mocha'},
+  },
+  checker = {
+    enabled = true,
+    notify = false,
   },
   change_detection = {
     notify = false,

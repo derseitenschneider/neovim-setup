@@ -15,7 +15,7 @@ keymap.set('x', '<leader>p', [["_dP]], { desc = 'Keeps the pasted word in regist
 
 -- File & window management
 keymap.set('n', '<leader>w', ':wa<enter>', { desc = 'Write all buffers', noremap = false })
-keymap.set('n', '<leader>q', ':wqa<enter>', { desc = 'Write and quit all buffers', noremap = false })
+keymap.set('n', '<leader>qq', ':wqa<enter>', { desc = 'Write and quit all buffers', noremap = false })
 
 -- Center cursor on linewrap, halfpage jump and search next/prev
 keymap.set('n', 'J', 'mzJ`z', { desc = 'Keeps cursor when line wrapping.' })
@@ -62,3 +62,7 @@ keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window'
 keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>', { desc = 'Toggle Zenmode' })
+
+-- Quickfix list
+vim.keymap.set('n', '<leader>qo', ':copen<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>qc', ':cclose<CR>', { noremap = true, silent = true })
